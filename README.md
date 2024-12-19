@@ -1,64 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Moni Challenge
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Dit is mijn entry voor de Moni Calendar Code Challenge. 
 
-## About Laravel
+## Assignments
+1. Create a Symfony application with a Command class that can be executed from the
+command line interface. The Command must accept an optional parameter with the
+e-mail address of the consultant to export all their planned meetings to a file. If the
+parameter is omitted, all meetings must be exported to one file per consultant.
+Bonus: Use an output formatter to show what the Command is doing at a given time.
+2. Create a Symfony Controller that can be called with the e-mail address of a
+consultant as a parameter. The Controller will display only the meetings of the current
+week. No authentication or authorization is required.
+3. Add a button to the Controller to edit a form that allows you to edit and save one
+meeting entry.
+4. Bonus: Consolidate the code by creating a service that can be called from both the
+Command and the Controller and that is responsible for retrieving the meetings from
+the database and giving them to the Command/Controller for further processing.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Mijn ervaringen
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ik heb alle assignments afgerond behalve nr.4 toen ik nog maar 7 minuten over had van de 4 uur die ik ervoor heb uitgetrokken. Ik heb de meeste tijd besteed aan de [Command class](https://github.com/Aljosja84/moni_challenge/blob/main/app/Console/Commands/ExportMeetings.php). Ik heb in het verleden wel eens een Command class gemaakt
+voor een twitter wrapper en een notificatie systeem maar dat is een beetje verstoft. Dus ik vond het wel spannend om het weer op te pakken.
 
-## Learning Laravel
+Ik heb geen aparte package voor het maken van iCal files geinstalleerd. De RFC 5545 format zijn maar een paar regels
+die ik heb gehardcode in de command class zelf voor het gemak. Laravel maakt gebruik van Symfony's Console, dus het was vrij gemakkelijk om de output formatter te gebruiken voor feedback aan de users dmv info en progress bars.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Hieronder een video van de Command class in actie zonder een email parameter
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+https://github.com/user-attachments/assets/1518fb16-e837-4f20-bf40-d082becacddf
 
-## Laravel Sponsors
+Met hieronder een video van de Command class in actie met een email parameter
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+https://github.com/user-attachments/assets/bf2a99d0-5cc0-4414-9b41-0943732c6859
 
-### Premium Partners
+De [Controller](https://github.com/Aljosja84/moni_challenge/blob/main/app/Http/Controllers/MeetingController.php) was pretty straightforward, alleen redelijk veel tijd nog besteed aan opmaak van de blade files:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![searchBladeFile](https://github.com/user-attachments/assets/28fdacb5-39fc-46b5-9a5a-c1c0e7b05992)
 
-## Contributing
+User 8 was de enige die deze week meetings had
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![meetingsUser8](https://github.com/user-attachments/assets/ff109dc7-fdfc-48f0-8bec-a8ec8a35312c)
 
-## Code of Conduct
+Editing a meeting
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![editMeeting](https://github.com/user-attachments/assets/7babced2-84c9-4d7f-b74b-3da5bc642dc7)
 
-## Security Vulnerabilities
+Achteraf zou ik willen dat ik meer tijd had besteed aan assignment #4: het maken van een Service. Ik heb achteraf de documentatie ervoor nog nagelezen 
+en het heeft zeer veel voordelen:
+1. Seperation of Concern
+2. Code reusability
+3. Improved testability
+4. Scalability
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Het gebruik ervan had de Command en Controller heel wat schoner opgeleverd. 
 
-## License
+Al met al ben ik niet geheel ontevreden over het resultaat van de challenge!
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
